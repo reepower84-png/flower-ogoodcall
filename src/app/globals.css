@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+/* 오굿콜 플라워 — 비비드 오렌지 · 검정 · 흰색 */
+:root {
+  --orange: #ff7a00;
+  --orange-deep: #d95f00;
+  --ink: #111111;
+  --muted: #5f5f5f;
+  --soft: #fff3e6;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px;
+}
+
+body {
+  background: #ffffff;
+  color: var(--ink);
+  font-family: var(--font-sans), "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.02em;
+  word-break: keep-all;
+}
+
+.font-display {
+  font-family: var(--font-display), var(--font-sans), sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* 스쿠터가 도로를 달리는 애니메이션 */
+@keyframes ride {
+  0% {
+    left: 0;
+  }
+  85% {
+    left: calc(100% - 5rem);
+  }
+  100% {
+    left: calc(100% - 5rem);
+  }
+}
+.ride {
+  animation: ride 6s cubic-bezier(0.45, 0, 0.3, 1) infinite;
+}
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+  50% {
+    transform: translateY(-4px) rotate(-1.5deg);
+  }
+}
+.scooter-bob {
+  animation: bob 0.9s ease-in-out infinite;
+}
+@keyframes speed {
+  0%,
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 0.3;
+    transform: translateX(-2px);
+  }
+}
+.speed-lines {
+  animation: speed 0.5s linear infinite;
+}
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+  }
+  100% {
+    box-shadow: 0 0 0 12px rgba(255, 255, 255, 0);
+  }
+}
+.ring-pulse {
+  animation: pulse-ring 1.6s ease-out infinite;
+}
+@keyframes blink {
+  50% {
+    opacity: 0.25;
+  }
+}
+.live-dot {
+  animation: blink 1.2s step-end infinite;
+}
+
+/* 레이어 */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes sheet-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.anim-fade {
+  animation: fade-in 0.2s ease-out;
+}
+.anim-pop {
+  animation: pop-in 0.22s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+/* 모바일: 아래에서 올라오는 바텀시트 / 데스크톱: 가운데 모달 */
+.anim-sheet {
+  animation: sheet-up 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+@media (min-width: 48rem) {
+  .anim-sheet {
+    animation: pop-in 0.22s ease-out;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ride,
+  .scooter-bob,
+  .speed-lines,
+  .ring-pulse,
+  .live-dot,
+  .anim-sheet,
+  .anim-pop {
+    animation: none;
+  }
+}
+
+@theme inline {
+  --color-orange: var(--orange);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-soft: var(--soft);
+}
